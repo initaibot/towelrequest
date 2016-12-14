@@ -1,5 +1,7 @@
 'use strict'
 
+const sendRequestToSupportStaff = require('./lib/sendRequestToSupportStaff')
+
 exports.handle = (client) => {
   // Create steps
   const sayHello = client.createStep({
@@ -21,11 +23,29 @@ exports.handle = (client) => {
       return false
     },
 
-    prompt() {
-      client.addResponse('apology/untrained')
-      client.done()
+    prompt(callback) {
+      // send the request to support staff
+      var data = {
+        'message': client.getMessagePart(),
+        'conversationState': client.getConversationState(),
+      }
+
+      sendRequestToSupportStaff(data, resultBody => {
+        console.log("Response from SupportStaff", resultBody)
+        if (!resultBody) {
+          console.log('Error sending data to support staff.')
+          callback()
+          return
+        }
+        client.addTextResponse(resultBody)
+        client.addTextResponse("I've sent your message to https://requestb.in/rzywqrrz?inspect")
+        client.done()
+        callback()
+      })
     }
   })
+
+  console.log('Received message:', client.getMessagePart())
 
   client.runFlow({
     classifications: {

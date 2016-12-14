@@ -29,3 +29,9 @@ $ npm i
 ```bash
 $ npm start
 ```
+
+# Unhandled requests
+
+All the unhandled conversations are sent to:
+
+https://requestb.in/rzywqrrz?inspect
