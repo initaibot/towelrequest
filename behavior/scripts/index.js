@@ -9,15 +9,9 @@ exports.handle = (client) => {
 
     prompt() {
       client.addResponse('welcome')
-      client.addResponse('provide/documentation', {
-        documentation_link: 'http://docs.init.ai',
-      })
-      client.addResponse('provide/instructions')
-
       client.updateConversationState({
         helloSent: true
       })
-
       client.done()
     }
   })
