@@ -18,6 +18,17 @@ exports.handle = (client) => {
     }
   })
 
+  const handleTowelRequest = client.createStep({
+    satisfied() {
+      return false
+    },
+
+    prompt() {
+      client.addTextResponse("Received request for towel.")
+      client.done()
+    }
+  })
+
   const untrained = client.createStep({
     satisfied() {
       return false
@@ -49,6 +60,7 @@ exports.handle = (client) => {
 
   client.runFlow({
     classifications: {
+      'request/towels': 'towel_request'
       // map inbound message classifications to names of streams
     },
     autoResponses: {
@@ -57,6 +69,7 @@ exports.handle = (client) => {
     streams: {
       main: 'onboarding',
       onboarding: [sayHello],
+      towel_request: handleTowelRequest,
       end: [untrained],
     },
   })

@@ -15,3 +15,9 @@ send some [towel](towel)?
 
 Please send some [towel](towel)?
 * request/towels
+
+I would like some [towel](towel) in my room?
+* request/towels
+
+I don't need [towel](towel) [now](time)
+* request/cancel
