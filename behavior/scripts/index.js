@@ -49,7 +49,7 @@ exports.handle = (client) => {
           return
         }
         client.addTextResponse(resultBody)
-        client.addTextResponse("I've sent your message to https://requestb.in/rzywqrrz?inspect")
+        client.addTextResponse("I've sent your message to http://requestb.in/vpa8hqvp?inspect")
         client.done()
         callback()
       })
