@@ -45,6 +45,9 @@ how are you
 I am good too
 * greeting/emphatic
 
+I am also good
+* greeting/emphatic
+
 I am fine
 * greeting/emphatic
 
