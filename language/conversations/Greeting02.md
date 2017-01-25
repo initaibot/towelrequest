@@ -6,32 +6,59 @@ timestamp: 2017-01-25T15:45:04.137228005+05:30
 Hello
 * greeting
 
-< Hi, I am Towelman. How may I help you?
+hello
+* greeting
+
+hello.
 * greeting
 
 Hi
 * greeting
 
-< Hi, I am Towelman. How may I help you?
+hi
 * greeting
+
+Hi.
+* greeting
+
+hi.
+* greeting
+
+< Hi, I am Towelman. How may I help you?
+* response/greeting
 
 How are you?
 * greeting/asking
 
-< I am good, what about you?
+How are you
 * greeting/asking
+
+how are you?
+* greeting/asking
+
+how are you
+* greeting/asking
+
+< I am good, what about you?
+* response/greeting/asking
 
 I am good too
 * greeting/emphatic
 
-< Great! how can I help you?
+I am fine
 * greeting/emphatic
+
+< Great! how can I help you?
+* response/greeting/emphatic
 
 thanks
 * thanks
 
-< Its my plaeasure to serve you. Is there anything else you need?
+Thanks
 * thanks
+
+< Its my plaeasure to serve you. Is there anything else you need?
+* response/thanks
 
 Thank you
 * thanks
@@ -43,4 +70,4 @@ Good bye
 * goodbye
 
 < See you later!
-* goodbye
+* response/goodbye
