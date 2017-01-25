@@ -56,21 +56,103 @@ exports.handle = (client) => {
     }
   })
 
+  const handleWelcome = client.createStep({
+    satisfied() {
+      return false
+    },
+
+    prompt(callback) {
+      client.addResponse('response/welcome')
+      client.done()
+      callback()
+    }
+  })
+
+  const handleThanks = client.createStep({
+    satisfied() {
+      return false
+    },
+
+    prompt(callback) {
+      client.addResponse('response/thanks')
+      client.done()
+      callback()
+    }
+  })
+
+  const handleGreetingEmphatic = client.createStep({
+    satisfied() {
+      return false
+    },
+
+    prompt(callback) {
+      client.addResponse('response/greeting/emphatic')
+      client.done()
+      callback()
+    }
+  })
+
+  const handleGreetingAsking = client.createStep({
+    satisfied() {
+      return false
+    },
+
+    prompt(callback) {
+      client.addResponse('response/greeting/asking')
+      client.done()
+      callback()
+    }
+  })
+
+  const handleGreeting = client.createStep({
+    satisfied() {
+      return false
+    },
+
+    prompt(callback) {
+      client.addResponse('response/greeting')
+      client.done()
+      callback()
+    }
+  })
+
+  const handleGoodbye = client.createStep({
+    satisfied() {
+      return false
+    },
+
+    prompt(callback) {
+      client.addResponse('response/goodbye')
+      client.done()
+      callback()
+    }
+  })
+
   console.log('Received message:', client.getMessagePart())
 
   client.runFlow({
     classifications: {
-      'request/towels': 'towel_request'
-      // map inbound message classifications to names of streams
-    },
-    autoResponses: {
-      // configure responses to be automatically sent as predicted by the machine learning model
+      // Add a greeting handler with a reference to the greeting stream
+      'request/towels': 'towel_request',
+      'greeting': 'greeting',
+      'greeting/asking': 'greeting/asking',
+      'greeting/emphatic': 'greeting/emphatic',
+      'thanks': 'thanks',
+      'welcome': 'welcome',
+      'goodbye': 'goodbye',
     },
     streams: {
+      // Add a Stream for greetings and assign it a Step
+      greeting: handleGreeting,
+      goodbye: handleGoodbye,
+      'greeting/asking': handleGreetingAsking,
+      'greeting/emphatic': handleGreetingEmphatic,
+      thanks: handleThanks,
+      welcome: handleWelcome,
+      towel_request: handleTowelRequest,
       main: 'onboarding',
       onboarding: [sayHello],
-      towel_request: handleTowelRequest,
-      end: [untrained],
+      end: [untrained]
     },
   })
 }
